@@ -15,7 +15,7 @@ provider "azurerm" {
 # Create a resource group
 resource "azurerm_resource_group" "product" {
   name     = "product-resources"
-  location = "West US"
+  location = "East US"
 }
 
 # Create a virtual network within the resource group
@@ -28,4 +28,6 @@ resource "azurerm_virtual_network" "product" {
 
 module "aks" {
   source = "./modules/aks"
+  resource_group_name = azurerm_resource_group.product.name
+  location = azurerm_resource_group.product.location
 }
