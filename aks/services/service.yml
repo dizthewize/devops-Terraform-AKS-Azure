@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2022-09-10T05:08:30Z"
+  finalizers:
+  - service.kubernetes.io/load-balancer-cleanup
+  labels:
+    app: rest-api
+  name: rest-api
+  namespace: default
+  resourceVersion: "3419"
+  uid: 6635d24a-ee18-4c17-91d1-d3765001a0ba
+spec:
+  allocateLoadBalancerNodePorts: true
+  clusterIP: 10.0.243.38
+  clusterIPs:
+  - 10.0.243.38
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - nodePort: 31175
+    port: 8000
+    protocol: TCP
+    targetPort: 8000
+  selector:
+    app: rest-api
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer:
+    ingress:
+    - ip: 52.151.234.10
